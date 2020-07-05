@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+	<h4>Filtrar por:</h4>
+	<form method="get">
+	<p>
+	Nombre: &nbsp{{ filter.form.nombre }} &nbsp
+	Matrícula: &nbsp {{ filter.form.matricula }} &nbsp
+	Especialidad: &nbsp {{ filter.form.especialidad }} &nbsp
+	<br><br>
+	Cuatrimestre: &nbsp {{ filter.form.cuatrimestre }} &nbsp
+	Grupo: &nbsp{{ filter.form.grupo }} &nbsp;&nbsp;
+	<button class="btn btn-success" type="submit">Filtrar</button>
+	</p>
+	</form>
+	<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<td>Matrícula</td>
+			<td>Nombre</td>
+			<td>Carrera</td>
+			<td>Especialidad</td>
+			<td>Cuatrimestre</td>
+			<td>Grupo</td>
+			<td>Acciones</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if filter.qs %}
+		{% for student in filter.qs %}
+		<tr>
+			<td>{{ student.matricula }}</td>
+			<td>{{ student.nombre }}</td>
+			<td>{{ student.carrera }}</td>
+			<td>{{ student.especialidad }}</td>
+			<td>{{ student.cuatrimestre }}</td>
+			<td>{{ student.grupo }}</td>
+			<td>
+				<a class="btn btn-success" href="{% url 'students:student_show' student.id %}">Ver</a>
+				<a class="btn btn-primary" href="{% url 'students:student_update' student.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'students:student_delete' student.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+		
+		{% else %}
+		<h1>No hay registros de Estudiantes</h1>
+		{% endif %}
+	</tbody>
+</table>
+<ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+       	 <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+		{% endif %}
+        </li>
+	<li>
+		{% if page_obj.has_next %}
+     	 <a href="?page={{ page_obj.next_page_number }}">Siguiente</a> 
+    	{% endif %}
+    </li>
+</ul> 
+	
+{% endblock %}
+
