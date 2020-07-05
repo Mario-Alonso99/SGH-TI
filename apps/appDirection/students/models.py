@@ -2,10 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Student(models.Model):
-    matricula = models.TextField(max_length=30, verbose_name="Matrícula")
+    matricula = models.TextField(max_length=15, verbose_name="Matrícula")
     nombre = models.TextField(max_length=200, verbose_name="Nombre")
     carrera = models.TextField(max_length=200, verbose_name="Carrera")
-    especialidad = models.TextField(max_length=50, verbose_name="Especialidad")
+    especialidad = models.TextField(max_length=200, verbose_name="Especialidad")
     cuatrimestre = models.TextField(max_length=20, verbose_name="Cuatrimestre")
     grupo = models.TextField(max_length=5, verbose_name="Grupo")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")

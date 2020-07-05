@@ -10,19 +10,18 @@
 	<br><br>
 	Cuatrimestre: &nbsp {{ filter.form.cuatrimestre }} &nbsp
 	Grupo: &nbsp{{ filter.form.grupo }} &nbsp;&nbsp;
-	<button class="btn btn-success" type="submit">Filtrar</button>
+	<button class="btn btn-success" type="submit">Buscar</button>
 	</p>
 	</form>
 	<table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<td>Matrícula</td>
-			<td>Nombre</td>
-			<td>Carrera</td>
-			<td>Especialidad</td>
-			<td>Cuatrimestre</td>
-			<td>Grupo</td>
-			<td>Acciones</td>
+			<th>Matrícula</th>
+			<th>Nombre</th>
+			<th>Especialidad</th>
+			<th>Cuatrimestre</th>
+			<th>Grupo</th>
+			<th>Acciones</th>
 		</tr>
 		
 	</thead>
@@ -32,7 +31,6 @@
 		<tr>
 			<td>{{ student.matricula }}</td>
 			<td>{{ student.nombre }}</td>
-			<td>{{ student.carrera }}</td>
 			<td>{{ student.especialidad }}</td>
 			<td>{{ student.cuatrimestre }}</td>
 			<td>{{ student.grupo }}</td>
@@ -45,7 +43,9 @@
 		{% endfor %}
 		
 		{% else %}
-		<h1>No hay registros de Estudiantes</h1>
+			<div class="alert alert-danger" role="alert">
+				AVISO: No Hay Registros de Estudiantes. <a href="{% url 'students:student_create' %}" class="alert-link"> Click Aquí para Registrar </a>	 
+			</div>
 		{% endif %}
 	</tbody>
 </table>
