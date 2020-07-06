@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.appDirection.students',
+
+    #Linea para importar datos
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +131,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+#Autorización para realizar transacciones hacia la BD
+IMPORT_EXPORT_USE_TRANSACTIONS = True

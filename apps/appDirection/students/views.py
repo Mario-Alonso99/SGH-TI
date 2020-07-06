@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, TemplateView
 from django.urls import reverse_lazy
 
@@ -9,6 +9,10 @@ from apps.appDirection.students.filters import StudentFilter
 from openpyxl import Workbook
 from django.http.response import HttpResponse
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+
+from tablib import Dataset
+from .resources import StudentResource
+from .models import Student
 
 # Create your views here.
 
@@ -21,7 +25,7 @@ class StudentCreate(CreateView):
 class StudentList(ListView):
     queryset = Student.objects.order_by('especialidad', 'cuatrimestre', 'grupo')
     template_name = 'students/students_list.html'
-    paginate_by = 5
+    paginate_by = 30
 
 class StudentUpdate(UpdateView):
 	model = Student
@@ -137,3 +141,20 @@ class StudentReport(TemplateView):
         response['Content-Disposition'] = content
         wb.save(response)
         return response
+
+#Agregando codigo para la carga masiva
+def importar(request):  
+    if request.method == 'POST':  
+        student_resource = StudentResource()  
+        dataset = Dataset()  
+        #print(dataset)  
+        new_students = request.FILES['xlsfile']  
+        #print(new_students)  
+        imported_data = dataset.load(new_students.read())  
+        #print(dataset)  
+        result = student_resource.import_data(dataset, dry_run=True) # Test the data import  
+        #print(result.has_errors())  
+        if not result.has_errors():  
+            student_resource.import_data(dataset, dry_run=False) # Actually import now
+            return redirect(reverse_lazy('students:student_list'))
+    return render(request, 'students/student_import.html')

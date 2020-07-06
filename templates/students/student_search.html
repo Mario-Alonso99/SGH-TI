@@ -1,6 +1,8 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+<a class= "btn btn-danger" href="{% url 'students:student_list' %}">Cancelar</a><br>
+
 	<table class="table">
 		<tr>
 			<td><h4><strong>Buscar por:</strong></h4></td>
@@ -11,14 +13,14 @@
 					<th>Nombre: {{ filter.form.nombre }} </th>
 					<th>Matrícula: {{ filter.form.matricula }} </th>
 					<th>Especialidad: {{ filter.form.especialidad }} </th>
-					<th>Cuatrimestre: {{ filter.form.cuatrimestre }}</th>
-					<th>Grupo:{{ filter.form.grupo }} &nbsp;&nbsp;</th>
-					<th><button class="btn btn-success" type="submit">Buscar</button></th>
+					<th>Cuatrimestre: {{ filter.form.cuatrimestre }} </th>
+					<th>Grupo: {{ filter.form.grupo }} </th>
+					<th><button class="btn btn-primary" type="submit">Buscar</button></th>
 				</p>
 			</form>
 		</tr>
 	</table>
-	<table class="table table-bordered table-striped table-hover">
+<table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
 			<th>Matrícula</th>
@@ -28,7 +30,6 @@
 			<th>Grupo</th>
 			<th>Acciones</th>
 		</tr>
-		
 	</thead>
 	<tbody>
 		{% if filter.qs %}
@@ -46,7 +47,6 @@
 			</td>
 		</tr>
 		{% endfor %}
-		
 		{% else %}
 			<div class="alert alert-danger" role="alert">
 				AVISO: No Hay Registros de Estudiantes. <a href="{% url 'students:student_create' %}" class="alert-link"> Click Aquí para Registrar </a>	 
@@ -59,7 +59,7 @@
 		{% if page_obj.has_previous %}
        	 <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
 		{% endif %}
-        </li>
+    </li>
 	<li>
 		{% if page_obj.has_next %}
      	 <a href="?page={{ page_obj.next_page_number }}">Siguiente</a> 

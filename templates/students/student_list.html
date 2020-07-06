@@ -1,9 +1,8 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-<a class="btn btn-success" href="{% url 'students:report' %}">Descargar Excel</a>
-<br><br>
-
+<a class="btn btn-success" href="{% url 'students:report' %}">Descargar Excel</a><br>
+<br>
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
@@ -14,7 +13,6 @@
 			<th>Grupo</th>
 			<th>Acciones</th>
 		</tr>
-		
 	</thead>
 	<tbody>
 		{% if object_list %}
