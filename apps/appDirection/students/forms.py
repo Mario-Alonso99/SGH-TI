@@ -14,7 +14,7 @@ class StudentForm(forms.ModelForm):
 		]
 
 		labels = {
-			'matricula': 'Matricula',
+			'matricula': 'Matrícula',
 			'nombre': 'Nombre',
 			'carrera': 'Carrera',
 			'especialidad': 'Especialidad',

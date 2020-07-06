@@ -1,18 +1,23 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-	<h4>Filtrar por:</h4>
-	<form method="get">
-	<p>
-	Nombre: &nbsp{{ filter.form.nombre }} &nbsp
-	Matrícula: &nbsp {{ filter.form.matricula }} &nbsp
-	Especialidad: &nbsp {{ filter.form.especialidad }} &nbsp
-	<br><br>
-	Cuatrimestre: &nbsp {{ filter.form.cuatrimestre }} &nbsp
-	Grupo: &nbsp{{ filter.form.grupo }} &nbsp;&nbsp;
-	<button class="btn btn-success" type="submit">Buscar</button>
-	</p>
-	</form>
+	<table class="table">
+		<tr>
+			<td><h4><strong>Buscar por:</strong></h4></td>
+		</tr>
+		<tr>
+			<form method="get">
+				<p>
+					<th>Nombre: {{ filter.form.nombre }} </th>
+					<th>Matrícula: {{ filter.form.matricula }} </th>
+					<th>Especialidad: {{ filter.form.especialidad }} </th>
+					<th>Cuatrimestre: {{ filter.form.cuatrimestre }}</th>
+					<th>Grupo:{{ filter.form.grupo }} &nbsp;&nbsp;</th>
+					<th><button class="btn btn-success" type="submit">Buscar</button></th>
+				</p>
+			</form>
+		</tr>
+	</table>
 	<table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
